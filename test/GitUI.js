@@ -44,7 +44,7 @@
     }
 
 
-    function runTests() {debugger;
+    function runTests() {
 
       var testInfo = {
         expect:null,
@@ -133,15 +133,10 @@
 
 
 
-
-
-
-
-
-
-
-
-
+      // navigate back to the Main view
+      setTimeout(function() {
+        _.navigateUrl(null, '?');
+      }, 5000)
 
 
 
