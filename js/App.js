@@ -18,17 +18,6 @@
   }
 
   exports.App = App;
-
-  // set up processing indicator
-  $.ajax({
-    start: function(){
-      $('body').addClass('busy');
-    },
-    complete: function(){
-      $('body').removeClass('busy');
-    }
-  });
-
 }($));
 
 // Start the app

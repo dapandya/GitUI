@@ -31,6 +31,9 @@
         });
     }
 
+    /**
+     * Bind view events
+     */
     function bindEvents () {
       // bind events
       $userList = $outlet.find(USER_SELECTOR);

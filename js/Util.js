@@ -5,7 +5,8 @@
 
   var instance,
     $eventBus = $({}),
-    EVENT_ROUTE_CHANGE = 'route:change';
+    EVENT_ROUTE_CHANGE = 'route:change',
+    $body = $('body');
 
   /**
    * prototypal extend
@@ -70,11 +71,27 @@
     $eventBus.trigger(EVENT_ROUTE_CHANGE);
   }
 
+  /**
+   * Shows  progress indicator
+   */
+  function processStart() {
+    $body.addClass('loading');
+  }
+
+  /**
+   * Removes progress indicator
+   */
+  function processEnd() {
+    $body.removeClass('loading');
+  }
+
   instance = exports._ || {};
   instance.extend = extend;
   instance.render = render;
   instance.getSearchParams = getSearchParams;
   instance.navigateUrl = navigateUrl;
+  instance.processStart = processStart;
+  instance.processEnd = processEnd;
 
   // using jquery object as event bus
   // different component of the app will hook into this to listen / trigger events

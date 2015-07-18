@@ -40,6 +40,7 @@
 
       disableNavigation();
       // renders RepoList view
+      _.processStart();
       $.when(Model().get(url))
         .done(function (data) {
        //   parseData(data);
@@ -58,11 +59,17 @@
           }, $outlet);
 
           bindEvents();
+
+          _.processEnd();
         }).fail(function(data) {
           _.render(TMPL_ERROR, data.responseJSON, $outlet);
+          _.processEnd();
         });
     }
 
+    /**
+     * Bind view events
+     */
     function bindEvents () {
       // bind events
       $commitList = $outlet.find(LIST_SELECTOR);
@@ -78,6 +85,9 @@
       $old.on('click', handleNext);
     }
 
+    /**
+     * Disable pagination
+     */
     function disableNavigation () {
       if($new) {
         $new.prop('disabled');
@@ -87,6 +97,9 @@
       }
     }
 
+    /**
+     * Handler for previous clicked
+     */
     function handlePrevious() {
       currentPage--;
       if(currentPage <= 1) {
@@ -98,6 +111,9 @@
       updateUrl();
     }
 
+    /**
+     * Handler for next clicked
+     */
     function handleNext() {
       currentPage++;
       deinit();
@@ -106,12 +122,19 @@
       updateUrl();
     }
 
+    /**
+     * Massaging some data
+     * @param data
+     */
     function parseData (data) {
       data.forEach(function (v) {
         v.commit.committer.date = new Date(commit.committer.date);
       })
     }
 
+    /**
+     * Update url to show page changes
+     */
     function updateUrl () {
       var searchQuery = _.getSearchParams();
       searchQuery.p = currentPage;

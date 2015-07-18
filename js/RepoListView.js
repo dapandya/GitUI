@@ -43,6 +43,7 @@
       disableNavigation();
 
       // renders RepoList view
+      _.processStart();
       $.when(Model().get(urlRepo), Model().get(urlUserInfo))
         .done(function (dataRepo, dataUserInfo) {
 
@@ -59,11 +60,16 @@
           massageRepoData(repoItems)
           _.render(TMPL, {repo: repoItems, user: userInfo, pagination: pagination}, $outlet);
           bindEvents();
+          _.processEnd();
         }).fail(function(data) {
           _.render(TMPL_ERROR, data.responseJSON, $outlet);
-        });;
+          _.processEnd();
+        });
     }
 
+    /**
+     * Bind view events
+     */
     function bindEvents () {
       // bind events
       $repoList = $outlet.find(LIST_SELECTOR);
@@ -80,6 +86,10 @@
       $old.on('click', handleNext);
     }
 
+    /**
+     * Massage data
+     * @param data
+     */
     function massageRepoData(data) {
       var currTime = new Date().getTime(),
         date;
@@ -91,6 +101,9 @@
     }
 
 
+    /**
+     * Disables pagination buttons
+     */
     function disableNavigation () {
       if($new) {
         $new.prop('disabled');
@@ -100,6 +113,9 @@
       }
     }
 
+    /**
+     * Handler for Previous button click
+     */
     function handlePrevious() {
       currentPage--;
       if(currentPage <= 1) {
@@ -111,6 +127,9 @@
       updateUrl();
     }
 
+    /**
+     * Handler for next button click
+     */
     function handleNext() {
       currentPage++;
       deinit();
@@ -119,6 +138,9 @@
       updateUrl();
     }
 
+    /**
+     * Update url to show page changes
+     */
     function updateUrl () {
       var searchQuery = _.getSearchParams();
       searchQuery.p = currentPage;

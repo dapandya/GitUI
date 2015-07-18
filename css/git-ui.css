@@ -156,16 +156,16 @@ footer {
     border-top: 1px solid #ddd;
     padding: 15px 0 ;
 }
-.busy footer {
+.loading footer {
     display: none;
 }
 
 /*  progress indicator */
-.busy .loader {
-    display: block;
+.loading .loader {
+    visibility: visible;
 }
 .loader {
-    display: none;
+    visibility: hidden;
     position: absolute;
     z-index: 100;
     top: 50%;
