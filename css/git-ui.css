@@ -1,0 +1,195 @@
+/**
+*  Style for Github UI experimental App
+*/
+
+/* reset */
+ul li {
+    list-style: none;
+}
+
+/* Navigation */
+#app-wrapper nav {
+    background-color: #eee;
+    border-bottom: 1px solid #ddd;
+}
+#app-wrapper .navbar-brand {
+    height: 70px;
+    padding: 25px 25px;
+}
+
+#app-wrapper .navbar-brand strong {
+    font-size: 25px;
+}
+
+/* MainView */
+.main-view .user-list {
+
+}
+.main-view .user-list li {
+
+}
+.main-view .user-list .content {
+    padding: 0 5px;
+    margin-top: 25px;
+    background-color: rgba(86,61,124,.15);
+    border: 1px solid rgba(86, 61, 124, .15);
+
+}
+.main-view .user-list .content:hover {
+    border: 1px solid rgba(86,61,124,.3);
+}
+
+.main-view .user-list a {
+    text-align: center;
+    height: 200px;
+    display: block;
+    line-height: 200px;
+    font-size: 25px;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+
+
+/* Repo list view */
+.repo-list-view {
+}
+.repo-list-view header {
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+.repo-list-view .user-vcard img{
+    width: 100px;
+    float: left;
+}
+
+.repo-list-view .vcard {
+    margin-left: 120px;
+}
+.repo-list-view .meta-info {
+    padding: 0;
+    font-size: 12px;
+    color: #ccc;
+}
+.repo-list-view .meta-info li {
+    margin-right: 10px;
+    display: inline-block;
+}
+.repo-list-view .user-vcard .bio {
+    color: #777;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.repo-list-view i {
+    margin-right: 5px;
+}
+
+/* repo item */
+.repo-item {
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.repo-item .name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.repo-item .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #888;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.repo-item ul.meta-info {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    color: #666;
+}
+
+
+/* Commits view */
+.commits-list-view header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    padding-left: 50px;
+}
+
+.commit-list li {
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+}
+
+.commit-list li .message {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+.commit-list author {
+    color: #666;
+}
+
+
+
+/* Misc styles */
+
+.app-view {
+    margin-bottom: 50px;
+}
+
+/* footer */
+footer {
+    border-top: 1px solid #ddd;
+    padding: 15px 0 ;
+}
+.busy footer {
+    display: none;
+}
+
+/*  progress indicator */
+.busy .loader {
+    display: block;
+}
+.loader {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    background-color: #ccc;
+    padding: 20px;
+}
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+.btn {
+    color: #069;
+}
+.pagination {
+    left: 50%;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Git UI by Abhishek Pandya</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-language" content="en" />
+  <link rel="stylesheet" href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+</head>
+
+<body>
+<div id="app-wrapper" >
+  <div class="loader">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...,
+  </div>
+  <nav class = "navbar navbar-static-top bs-docs-nav">
+    <div class="container">
+      <header class = "navbar-header">
+        <div class="navbar-brand"><strong>GitHub UI</strong> Experimental</div>
+      </header>
+    </div>
+  </nav>
+
+  <h1>Test Runner:</h1>
+
+
+  <section id="app-outlet" class="container">
+  </section>
+
+  <footer class="bs-docs-footer">
+    <div class="container">
+      <cite>Developed by <strong>Abhishek Pandya</strong></cite>
+    </div>
+  </footer>
+
+</div>
+
+<!-- #####################  ClientSide Templates BEGIN #####################--->
+
+<!-- TestRunner Main -->
+<script id="tmpl-testItemView" type="text/x-handlebars-template">
+  <div class="test-item">
+    <h4>{{title}}</h4>
+    <h5>{{description}}</h5>
+    <p>Status: <strong></strong></p>
+    <p>{{error}}</p>
+  </div>
+</script>
+
+
+<!-- #####################  ClientSide Templates END #####################--->
+
+
+
+<!-- 3rd party js libs-->
+<script type="text/javascript" src="lib/jquery-2.1.4.min.js" ></script>
+<script type="text/javascript" src="lib/handlebars-v3.0.3.js" ></script>
+
+<!-- my own creation -->
+<script type="text/javascript" src="js/CommonJSLite.js" ></script>
+<script type="text/javascript" src="js/Util.js" ></script>
+<script type="text/javascript" src="js/Model.js" ></script>
+<script type="text/javascript" src="js/MainView.js" ></script>
+<script type="text/javascript" src="js/RecentCommitsView.js" ></script>
+<script type="text/javascript" src="js/RepoListView.js" ></script>
+<script type="text/javascript" src="js/Router.js" ></script>
+<script type="text/javascript" src="js/App.js" ></script>
+<script type="text/javascript" src="test/GitUI.js" ></script>
+
+</body>
+</html>
