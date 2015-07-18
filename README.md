@@ -11,7 +11,7 @@ External Lib used:
 go to: http://dapandya.github.io/GitUI
 
 # How to run the test
-go to: dapandya.github.io/GitUI/testRunner.html
+go to: http://dapandya.github.io/GitUI/testRunner.html
 
 Note:
 - Here I have demonstrated integration test cases where I have recorded the mock data so it does not need to make server request
