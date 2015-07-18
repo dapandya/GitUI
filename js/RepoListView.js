@@ -154,7 +154,9 @@
      */
     function deinit() {
       // unbind events
-      $repoList.off();
+      if($repoList) {
+        $repoList.off();
+      }
     }
 
     return  {

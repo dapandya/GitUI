@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Git UI by Abhishek Pandya</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-language" content="en" />
+  <link rel="stylesheet" href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/git-ui.css" type="text/css" media="screen"/>
+</head>
+
+<body>
+<div id="app-wrapper" >
+  <div class="loader">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...,
+  </div>
+  <nav class = "navbar navbar-static-top bs-docs-nav">
+    <div class="container">
+      <header class = "navbar-header">
+        <div class="navbar-brand"><strong>GitHub UI</strong> Experimental</div>
+      </header>
+    </div>
+  </nav>
+
+  <section id="app-outlet" class="container">
+  </section>
+
+  <footer class="bs-docs-footer">
+    <div class="container">
+      <cite>Developed by <strong>Abhishek Pandya</strong></cite>
+    </div>
+  </footer>
+
+</div>
+
+<!-- #####################  ClientSide Templates BEGIN #####################--->
+
+<!-- MainView -->
+<script id="tmpl-mainView" type="text/x-handlebars-template">
+  <div class="app-view main-view">
+    <header>
+      <h1 class="page-header">Users you are following</h1>
+    </header>
+
+    <ul class="user-list row">
+      {{#each users}}
+      <li class = "col-xs-6">
+        <div class="content">
+          <a href="?page=repoList&user={{.}}">{{.}}</a>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</script>
+
+
+<!-- RepoListView -->
+<script id="tmpl-repoListView" type="text/x-handlebars-template">
+  <div class="app-view repo-list-view">
+    <header>
+      <div class="user-vcard">
+        <img src = "{{user.avatar_url}}" />
+        <div class = "vcard">
+          <h2 class="name">{{user.name}} : Repositories</h2>
+          <h4 class="bio">{{user.bio}}</h4>
+
+          <ul class="meta-info">
+            <li><i class="glyphicon glyphicon-tree-deciduous"></i>{{user.location}}</li>
+            <li><i class="glyphicon glyphicon-link"></i>{{user.blog}}</li>
+            <li><i class="glyphicon glyphicon-envelope"></i>{{user.email}}</li>
+          </ul>
+
+        </div>
+      </div>
+    </header>
+
+    <ul class="repo-list">
+      {{#each repo.items}}
+      <li>
+        <div class="repo-item">
+          <a class="name" href="?page=recentCommits&user={{owner.login}}&repo={{name}}">{{name}}</a>
+          <p class="description">{{description}}</p>
+          <span class="meta-info">Updated {{updatedHours}} hours ago</span>
+          <ul class="meta-info">
+            <li class="Language">{{language}}</li>
+            <li title="Star gazers"><i class="glyphicon glyphicon-star"></i>{{stargazers_count}}</li>
+            <li title="Forks"><i class="glyphicon glyphicon-export"></i>{{forks}}</li>
+          </ul>
+        </div>
+
+      </li>
+      {{/each}}
+
+    </ul>
+
+    <div class="btn-group pagination" role="group">
+      <button type="button" class="btn btn-default new" {{#if pagination.disablePrev}}disabled{{/if}}>Newer</button>
+      <button type="button" class="btn btn-default old" {{#if pagination.disableNext}}disabled{{/if}}>Older</button>
+    </div>
+
+  </div>
+</script>
+
+
+<!-- RecentCommitsView -->
+<script id="tmpl-recentCommitsView" type="text/x-handlebars-template">
+  <div class="app-view commits-list-view">
+    <header>
+      <h4>
+        <a href="?page=repoList&user={{user}}">{{user}}</a> /
+        <a href="?page=recentCommits&user={{user}}&repo={{repo}}">{{repo}}</a>: Recent Commits
+      </h4>
+    </header>
+    <ul class="commit-list">
+      {{#each items}}
+      <li>
+        <p class="message">{{commit.message}}</p>
+        <author>{{author.login}} authored on {{commit.committer.date}}</author>
+      </li>
+      {{/each}}
+    </ul>
+
+    <div class="btn-group pagination" role="group">
+      <button type="button" class="btn btn-default new" {{#if pagination.disablePrev}}disabled{{/if}}>Newer</button>
+      <button type="button" class="btn btn-default old" {{#if pagination.disableNext}}disabled{{/if}}>Older</button>
+    </div>
+  </div>
+</script>
+
+
+<!-- Error -->
+<script id="tmpl-errorView" type="text/x-handlebars-template">
+  <div class="app-view">
+
+    <div class="alert alert-danger" role="alert">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span class="sr-only">Error:</span>
+      {{message}}
+    </div>
+  </div>
+</script>
+
+<!-- 404 -->
+<script id="tmpl-404View" type="text/x-handlebars-template">
+  <div class="app-view">
+    <h1>404: page not found!</h1>
+  </div>
+</script>
+
+
+<!-- TestRunner Main -->
+<script id="tmpl-testItemView" type="text/x-handlebars-template">
+  <div class="test-item">
+    <h5>Test {{testCount}}: {{testName}}</h5>
+    <span>Status: <strong>{{#if status}}Success{{else}}Failed{{/if}}</strong></span>
+    {{#if status}}{{else}}<p>{{failureMessage}} {{expected}}, found: {{actual}}</p>{{/if}}
+  </div>
+</script>
+<!-- #####################  ClientSide Templates END #####################--->
+
+
+
+<!-- 3rd party js libs-->
+<script type="text/javascript" src="lib/jquery-2.1.4.min.js" ></script>
+<script type="text/javascript" src="lib/handlebars-v3.0.3.js" ></script>
+
+<!-- my own creation -->
+<script type="text/javascript" src="js/CommonJSLite.js" ></script>
+<script type="text/javascript" src="js/Util.js" ></script>
+<script type="text/javascript" src="js/Model.js" ></script>
+<script type="text/javascript" src="js/MainView.js" ></script>
+<script type="text/javascript" src="js/RecentCommitsView.js" ></script>
+<script type="text/javascript" src="js/RepoListView.js" ></script>
+<script type="text/javascript" src="js/Router.js" ></script>
+<script type="text/javascript" src="js/App.js" ></script>
+<script type="text/javascript" src="test/MockJSON.js" ></script>
+<script type="text/javascript" src="test/GitUI.js" ></script>
+<div class="test-output mask"></div>
+</body>
+</html>
+
+

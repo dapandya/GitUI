@@ -25,11 +25,16 @@
    * @returns {*}
    * @constructor
    */
-  function Model (_cacheExpireDelay) {
+  function Model (_cacheExpireDelay, isTest) {
+    var _isTest = _isTest || isTest;
 
     cacheExpireDelay = _cacheExpireDelay || 30000;
     // return singleton instance
     if (modelInstance) {
+      // enable set function during test mode so mock data can be populated
+      if(_isTest) {
+        modelInstance.set = set;
+      }
       return modelInstance;
     }
 
@@ -44,6 +49,9 @@
      * @returns {boolean}
      */
     function isExpired(cachedData) {
+      if(_isTest) {
+        return false;
+      }
       var timestamp = cachedData['timestamp'];
 
       if(!timestamp) {
@@ -119,6 +127,7 @@
     modelInstance = {
       get: get
     };
+
 
     return modelInstance;
 

@@ -62,13 +62,23 @@
    * Also trigger route:change so router can act on it.
    * @param evt
    */
-  function navigateUrl (evt) {
-    var url = $(evt.target).attr('href');
-    evt.preventDefault();
-    evt.stopPropagation();
+  function navigateUrl (evt, url, triggerRenderCompleteEvent) {
+    var url = evt ? $(evt.target).attr('href') : url;
+    if(url === undefined) {
+      throw new Error('You must provide click event object or url!');
+      return;
+    }
 
+    if(evt) {
+      evt.preventDefault();
+      evt.stopPropagation();
+    }
     window.history.pushState(null, null, url);
     $eventBus.trigger(EVENT_ROUTE_CHANGE);
+
+    if(triggerRenderCompleteEvent) {
+      $eventBus.trigger('render:completed');
+    }
   }
 
   /**
