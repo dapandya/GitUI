@@ -44,7 +44,7 @@
       _.processStart();
       $.when(Model().get(url))
         .done(function (data) {
-       //   parseData(data);
+          parseData(data);
 
           if(!data.length) {
             pagination.disableNext = true;
