@@ -133,9 +133,15 @@
      * @param data
      */
     function parseData (data) {
+      var currTime = new Date().getTime(),
+        date;
       data.forEach(function (v) {
-        v.commit.committer.date = new Date(commit.committer.date);
-      })
+        date = new Date(commit.committer.date);
+        date = currTime - date.getTime();
+        v.commit.committer.date = parseInt(date / 1000/60/60, 10);
+        
+         
+      });
     }
 
     /**
