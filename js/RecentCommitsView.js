@@ -14,6 +14,7 @@
       currentPage = 1,
       $new,
       $old,
+      $breadCrumb,
       TMPL = 'tmpl-recentCommitsView',
       TMPL_ERROR = 'tmpl-errorView',
       LIST_SELECTOR = '.commit-list',
@@ -75,6 +76,7 @@
       $commitList = $outlet.find(LIST_SELECTOR);
       $new = $outlet.find(SEL_PAGINATION + ' ' + SEL_NEW);
       $old = $outlet.find(SEL_PAGINATION + ' ' + SEL_OLD);
+      $breadCrumb = $outlet.find('header h4 a');
 
       // $commitList to commit detail page: index.html?page=commitDetail..
       //$commitList.on('click', 'li', function(evt) {
@@ -83,6 +85,7 @@
 
       $new.on('click', handlePrevious);
       $old.on('click', handleNext);
+      $breadCrumb.on('click', _.navigateUrl);
     }
 
     /**
@@ -94,6 +97,9 @@
       }
       if($old) {
         $old.prop('disabled');
+      }
+      if($breadCrumb) {
+        $breadCrumb.off();
       }
     }
 
