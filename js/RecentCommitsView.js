@@ -138,7 +138,7 @@
       data.forEach(function (v) {
         date = new Date(commit.committer.date);
         date = currTime - date.getTime();
-        v.commit.committer.hoursAgo = parseInt(date / 1000/60/60, 10);
+        v.commit.committer.date = parseInt(date / 1000/60/60, 10);
         
          
       });
