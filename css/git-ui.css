@@ -15,7 +15,7 @@ ul li {
 #app-wrapper .navbar-brand {
     height: 70px;
     padding: 25px 25px;
-    cursur: pointer;
+    cursor: pointer;
 }
 
 #app-wrapper .navbar-brand strong {
