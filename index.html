@@ -121,7 +121,7 @@
 				{{#each items}}
 					<li>
 						<p class="message">{{commit.message}}</p>
-						<author>{{author.login}} authored on {{commit.committer.date}}</author>
+						<author>{{author.login}} authored {{commit.committer.hoursAgo}} hours ago</author>
 					</li>
 				{{/each}}
 			</ul>
