@@ -134,11 +134,12 @@
      */
     function parseData (data) {
       var currTime = new Date().getTime(),
-        date;
+        date, 
+        hours;
       data.forEach(function (v) {
         date = new Date(v.commit.committer.date);
-        date = currTime - date.getTime();
-        v.commit.committer.hoursAgo = parseInt(date / 1000/60/60, 10);
+        hours = currTime - date.getTime();
+        v.commit.committer.hoursAgo = parseInt(hours / 1000/60/60, 10);
         
          
       });
