@@ -15,7 +15,8 @@
       }
     },
     modelInstance,
-    cacheExpireDelay;
+    cacheExpireDelay,
+    _isTest = false;
 
 
   /**
@@ -26,7 +27,7 @@
    * @constructor
    */
   function Model (_cacheExpireDelay, isTest) {
-    var _isTest = _isTest || isTest;
+    _isTest = _isTest || isTest;
 
     cacheExpireDelay = _cacheExpireDelay || 30000;
     // return singleton instance
