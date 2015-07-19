@@ -1,6 +1,9 @@
 # Git UI Experimental App
 
 This App works as a single page app without using any 3rd party MVC frameworks
+- I have created my own router / model / view
+- When you navigate to new view, the old view gets deinitiazed (and all its subsequent dependencies) to prevent any memory / dangling event handlers issues
+- So essentially you can run this app for a long time without having any slowdown due to memory leaks
 
 External Lib used:
 - Bootstrap css
