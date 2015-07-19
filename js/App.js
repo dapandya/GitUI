@@ -15,7 +15,7 @@
     var $outlet = $(SEL_APP_OUTLET);
     // initialize the router
     var router = new Router($outlet);
-    $('.navbar-brand').on('click', function(){
+    $('.navbar-brand').on('click', function() {
       _.navigateUrl(null, '?');  
     });
   }
